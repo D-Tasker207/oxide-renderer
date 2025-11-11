@@ -1,0 +1,48 @@
+[package]
+name = "triangle_demo"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "tutorial1-window"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+winit = "0.30"
+wgpu = "27.0"
+pollster = "0.4"
+log = "0.4"
+env_logger = "0.11"
+cgmath = "0.18"
+tobj = { version = "3.2", default-features = false, features = ["async"] }
+bytemuck = { version = "1.24", features = [ "derive" ] }
+instant = "0.1"
+
+[build-dependencies]
+anyhow = "1.0"
+fs_extra = "1.2"
+glob = "0.3"
+
+[dependencies.image]
+version = "0.25"
+default-features = false
+features = ["png", "jpeg"]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1.6"
+console_log = "1.0"
+reqwest = { version = "0.12" }
+instant = { version = "0.1", features = ["wasm-bindgen"] }
+wgpu = { version = "27.0.0", features = ["webgl"]}
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4.30"
+web-sys = { version = "0.3.69", features = [
+    "Document",
+    "Window",
+    "Element",
+    "Location",
+]}
