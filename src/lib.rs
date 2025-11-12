@@ -5,17 +5,21 @@ use winit::event_loop::EventLoop;
 
 mod app;
 mod camera;
+mod draw_traits;
 mod instance;
 mod light;
 mod model;
 mod pipeline;
+mod pipeline_manager;
+mod renderable_object;
 mod resources;
 mod state;
 mod texture;
 mod uniforms;
 
 pub use app::App;
-pub use model::{DrawLight, DrawModel, Vertex};
+pub use draw_traits::{DrawWithMaterial, DrawWithoutMaterial, DrawMethod};
+pub use model::Vertex;
 
 pub fn run() -> anyhow::Result<()> {
   #[cfg(not(target_arch = "wasm32"))]

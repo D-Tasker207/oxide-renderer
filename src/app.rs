@@ -7,6 +7,9 @@ use winit::{
   window::Window,
 };
 
+#[cfg(target_arch = "wasm32")]
+use winit::event_loop::EventLoop;
+
 use crate::state::State;
 
 pub struct App {
@@ -41,9 +44,9 @@ impl ApplicationHandler<State> for App {
 
       const CANVAS_ID: &str = "canvas";
 
-      let window = wgpu::web_sys::window().unwrap_throw();
-      let document = window.document().unwrap_throw();
-      let canvas = document.get_element_by_id(CANVAS_ID).unwrap_throw();
+      let window = wgpu::web_sys::window().unwrap();
+      let document = window.document().unwrap();
+      let canvas = document.get_element_by_id(CANVAS_ID).unwrap();
       let html_canvas_element = canvas.unchecked_into();
       window_attributes = window_attributes.with_canvas(Some(html_canvas_element));
     }
